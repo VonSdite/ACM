@@ -1,47 +1,57 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
+std::vector<int> a[100005];
+int ans[100005];
+
 int main(int argc, char const *argv[])
 {
-	int n, m, k, l, r;
-
+	int n, m;
 	while (~scanf("%d %d", &n, &m))
 	{
-		int a[n][m];
+		int tmp;
 		for (int i = 0; i < n; ++i)
 		{
 			for (int j = 0; j < m; ++j)
 			{
-				scanf("%d", &a[i][j]);
+				scanf("%d", &tmp);
+				a[i].push_back(tmp);
 			}
 		}
-		scanf("%d", &k);
 
+		for (int i = 0; i < n; ++i)
+		{
+			ans[i] = i;	//每行的起始行等于i(等号右边), 结束行为i(等行的左边)
+		}
+
+		int r, l;
+		for (int i = 0; i < m; ++i)
+		{
+			r = l = 0;
+
+			while(r < n)
+			{
+				while (r+1 < n && a[r+1][i] >= a[r][i])
+				{
+					++r;
+					if(l < ans[r]) ans[r] = l;
+				}
+
+				l = r+1;
+				r = l;
+			}
+		}
+
+		int k;
+		scanf("%d", &k);
 		for (int i = 0; i < k; ++i)
 		{
-			bool flag = false;
 			scanf("%d %d", &l, &r);
-
 			--l;
 			--r;
-			for (int i = 0; i < m; ++i)
-			{
-				int j;
-				for ( j = l + 1; j <= r; ++j)
-				{
-					if (a[j][i] < a[j - 1][i])
-					{
-						break;
-					}
-				}
-				if (j == r + 1)
-				{
-					flag = true;
-					break;
-				}
-			}
-			if (flag) printf("Yes\n");
+			if(ans[r] <= l) printf("Yes\n");
 			else printf("No\n");
 		}
 	}
