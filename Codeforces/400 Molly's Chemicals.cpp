@@ -81,16 +81,21 @@ int main(int argc, char const *argv[])
 		}
 		else
 		{
+			long long sa[64]={1};
+			int c = 1;
+			while (true)
+			{
+				sa[c] = sa[c-1]*k;
+				if(abs(sa[c]) > 1e15) break;
+				++c;
+			}
 			for (int i = n; i >= 0; --i)
 			{
-				long long cur = 1;
-				while(true)
+				for (int j = 0; j <= c; ++j)
 				{
 					if(i == n) break;
-					if(abs(cur) > 1e15) break;
-					if(m.find(a[i] + cur) != m.end())
-						cnt += m[a[i]+cur];
-					cur *= k;
+					if(m.find(a[i] + sa[j]) != m.end())
+						cnt += m[a[i]+sa[j]];
 				}
 				++m[a[i]];
 			}
