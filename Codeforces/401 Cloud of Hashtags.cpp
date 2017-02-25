@@ -23,9 +23,9 @@ int main(int argc, char const *argv[])
 			string str1 = a[i];
 			string str2 = a[i+1];
 
-			for (size_t j = 0; j < a[i].length(); ++j)
+			for (size_t j = 0; j < str1.length(); ++j)
 			{
-				if(j == a[i+1].length() || str1[j] > str2[j])
+				if(j == str2.length() || str1[j] > str2[j])
 				{
 					mark = j;
 					break;
