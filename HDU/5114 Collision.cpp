@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
 
 long long exgcd(long long a, long long b, long long &x, long long &y)
