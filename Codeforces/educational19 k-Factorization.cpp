@@ -2,13 +2,14 @@
 
 using namespace std;
 
-int a[100000];
-int b[100000];
+const int SIZE = 1e5+5;
+int a[SIZE];
+int b[SIZE];
 void prime()
 {
 	bool flag;
 	int cnt = 0;
-	for (int i = 2; i < 100000; ++i)
+	for (int i = 2; i < SIZE; ++i)
 	{
 		flag = false;
 		for (int j = 2; j * j < i; ++j)
