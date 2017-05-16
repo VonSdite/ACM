@@ -14,8 +14,7 @@ int main(int argc, char const *argv[])
         num[0] = num[1] = 1;
         for (int i = 2; i <= n; ++i)
         {
-            int len = num[0];
-            for (int j = 1; j <= len; ++j)
+            for (int j = 1; j <= num[0]; ++j)
             {
                 num[j] *= i;
             }
