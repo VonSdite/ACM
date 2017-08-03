@@ -1,28 +1,36 @@
 #include <iostream>
-#include <string.h>
+
 using namespace std;
-const int maxn=100000+5;
-int a[maxn];
-bool is[maxn];
-int main()
+
+const int SIZE = 1e5+5;
+bool vis[SIZE];
+
+
+int main(int argc, char const *argv[])
 {
     int n;
-    while(~scanf("%d",&n))
+    int tmp;
+    while (~scanf("%d", &n))
     {
-        memset(is,false,sizeof(is));
-        for(int i=0;i<n;i++)
-            scanf("%d",&a[i]);
-        int num=n;
-        for(int i=0;i<n;i++)
+        int c = n;
+        for (int i = 0; i < n; ++i)
         {
-            is[a[i]]=true;
-            while(is[num])
+            scanf("%d", &tmp);
+            vis[tmp] = true;
+            if(vis[c])
             {
-                printf("%d ",num);
-                num--;
+                while (c)
+                {
+                    if(!vis[c]) break;
+                    printf("%d ", c);
+                    vis[c] = false;
+                    --c;
+                }
+                printf("\n");
             }
-            printf("\n");
+            else printf("\n");
         }
+        printf("\n");
     }
     return 0;
 }
